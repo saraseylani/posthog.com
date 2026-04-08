@@ -5096,22 +5096,12 @@ export const docsMenu = {
                     color: 'orange',
                 },
                 {
-<<<<<<< HEAD
-                    name: 'Email integration',
-                    url: '/docs/support/email',
-                    icon: 'IconMail',
-                    color: 'orange',
-                },
-                {
-||||||| 51429c429
-=======
                     name: 'Email channel',
                     url: '/docs/support/email',
                     icon: 'IconMail',
                     color: 'orange',
                 },
                 {
->>>>>>> master
                     name: 'Workflow automation',
                     url: '/docs/support/workflows',
                     icon: 'IconDecisionTree',
