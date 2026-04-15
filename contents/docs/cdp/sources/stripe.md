@@ -30,15 +30,16 @@ The Stripe connector syncs your Stripe data into PostHog, including charges, cus
 If you prefer not to use OAuth, you can connect using a restricted API key instead.
 
 1. Select **Restricted API key** as the authentication type.
-2. Head to your Stripe dashboard > **Developers** > **API keys**, under **Restricted keys**, click [+ Create a restricted key](https://dashboard.stripe.com/apikeys/create). You need to give your API key the following **Read** permissions:
+2. Head to your Stripe dashboard > **Developers** > **API keys**, under **Restricted keys**, click [+ Create a restricted key](https://dashboard.stripe.com/apikeys/create). You need to give your API key the following permissions:
 
-| Resource Type | Required Read Permissions                                                                                 |
-| ------------- | --------------------------------------------------------------------------------------------------------- |
-| Core          | Balance transaction sources, Charges and refunds, Customers, Disputes, Payment methods, Payouts, Products |
-| Billing       | Credit notes, Invoices, Prices, Subscriptions                                                             |
-| Connect       | Click **Read** in the **Connect** header                                                                  |
+| Resource Type | Permission | Resources                                                                                 |
+| ------------- | ---------- | ----------------------------------------------------------------------------------------- |
+| Core          | Read       | Balance transaction sources, Charges and refunds, Customers, Disputes, Payment methods, Payouts, Products |
+| Billing       | Read       | Credit notes, Invoices, Prices, Subscriptions                                             |
+| Connect       | Read       | Click **Read** in the **Connect** header                                                  |
+| Webhooks      | Write      | Webhook endpoints (required for [webhook syncing](#setting-up-webhooks-for-real-time-syncing)) |
 
-If you aren't concerned with giving us more permissions than necessary, you can also simply click **Read** on the **Core**, **Billing**, and **Connect** headers to give us the necessary permissions.
+If you aren't concerned with giving us more permissions than necessary, you can also simply click **Read** on the **Core**, **Billing**, and **Connect** headers. If you plan to use webhook syncing, also grant **Write** on **Webhook endpoints** under **Webhooks**.
 
 If your Stripe account is in a language other than English, we suggest you update it to English before following the steps above to guarantee the correct permissions are set.
 
@@ -62,3 +63,5 @@ To set up a webhook:
 3. Click **Create webhook**.
 
 PostHog automatically creates and registers the webhook on your Stripe account. Once set up, you can view the webhook status, including both PostHog's internal status and the Stripe-side webhook status, from the **Webhook** tab.
+
+> If automatic webhook creation fails due to a permissions error and you're using a restricted API key (not OAuth), your key needs **Write** access on **Webhook endpoints**. You can update this in your [Stripe API keys settings](https://dashboard.stripe.com/apikeys).
